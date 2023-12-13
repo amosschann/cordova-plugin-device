@@ -55,7 +55,7 @@ public class Device extends CordovaPlugin {
      */
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        Device.uuid = getUuid();
+        // Device.uuid = getUuid();
     }
 
     /**
@@ -78,11 +78,21 @@ public class Device extends CordovaPlugin {
             r.put("serial", this.getSerialNumber());
             r.put("sdkVersion", this.getSDKVersion());
             callbackContext.success(r);
+        } 
+	else if ("setDeviceUuid".equals(action)) {
+            setUuid();
+            callbackContext.success();
         }
         else {
             return false;
         }
         return true;
+    }
+
+    // method to set the UUID - after privacy policy has been agreed on
+    private void setUuid() {
+	String newUuid = getUuidFromDevice();
+    	Device.uuid = newUuid;
     }
 
     //--------------------------------------------------------------------------
