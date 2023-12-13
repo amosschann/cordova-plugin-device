@@ -91,7 +91,7 @@ public class Device extends CordovaPlugin {
 
     // method to set the UUID - after privacy policy has been agreed on
     private void setUuid() {
-	String newUuid = getUuidFromDevice();
+	String newUuid = getUuid();
     	Device.uuid = newUuid;
     }
 
