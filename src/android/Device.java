@@ -69,30 +69,23 @@ public class Device extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("getDeviceInfo".equals(action)) {
             JSONObject r = new JSONObject();
-            r.put("uuid", Device.uuid);
+            r.put("uuid", 'unknown');
             r.put("version", this.getOSVersion());
             r.put("platform", this.getPlatform());
             r.put("model", this.getModel());
             r.put("manufacturer", this.getManufacturer());
-	        r.put("isVirtual", this.isVirtual());
+	    r.put("isVirtual", this.isVirtual());
             r.put("serial", this.getSerialNumber());
             r.put("sdkVersion", this.getSDKVersion());
             callbackContext.success(r);
         } 
-	else if ("setDeviceUuid".equals(action)) {
-            setUuid();
-            callbackContext.success();
+	    else if ("getDeviceUuid".equals(action)) {
+            callbackContext.success(this.getUuid());
         }
         else {
             return false;
         }
         return true;
-    }
-
-    // method to set the UUID - after privacy policy has been agreed on
-    private void setUuid() {
-	String newUuid = getUuid();
-    	Device.uuid = newUuid;
     }
 
     //--------------------------------------------------------------------------
