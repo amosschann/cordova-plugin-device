@@ -93,4 +93,11 @@ Device.prototype.getInfo = function (successCallback, errorCallback) {
     exec(successCallback, errorCallback, 'Device', 'getDeviceInfo', []);
 };
 
+Device.prototype.setDeviceUuid = function () {
+    argscheck.checkArgs('fF', 'Device.setDeviceUuid', arguments);
+    exec(deviceUUID => {
+        this.deviceUUID = deviceUUID;
+    }, errorCallback, 'Device', 'getDeviceUuid', []);
+};
+
 module.exports = new Device();
